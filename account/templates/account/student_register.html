@@ -1,0 +1,79 @@
+{% extends 'account.html' %}
+{% load static %}
+{% block title %}SignUp | Student{% endblock title %}
+
+{% block style %}
+	<style>
+		.login-box{
+			width: 40%;
+      margin-top: 9%;
+			/* box-shadow: none; */
+			background-color: transparent;
+		}
+	</style>
+{% endblock %}
+  
+   {% block content1 %}
+         <form class="login-box" action="{% url 'account:student_register' %}" method="post" novalidate >
+           <h1>Student SignUp</h1>
+                     
+              {% csrf_token %}
+
+              <div class="textbox">
+                {{form.first_name}}
+              </div>
+              <p class="error"> {{form.first_name.errors|striptags}}</p>
+
+              <div class="textbox">
+                {{form.last_name}}
+              </div>
+              <p class="error"> {{form.last_name.errors|striptags}}</p>
+
+              <div class="textbox">
+                {{form.username}} 
+              </div>
+              <p class="error">{{form.username.errors|striptags}}</p>   
+
+              <div class="textbox">
+                {{form.email}} 
+              </div>
+              <p class="error">{{form.email.errors|striptags}}</p>  
+
+              <div class="textbox">
+                {{form.department}} 
+              </div>
+
+              <div class="textbox">
+                {{form.contact_no}} 
+              </div>
+              <p class="error">{{form.contact_no.errors|striptags}}</p>
+
+              <div class="textbox">
+                {{form.password1}} 
+              </div>
+              <p class="error">{{form.password1.errors|striptags}}</p>
+
+              <div class="textbox">
+                {{form.password2}} 
+              </div>
+              <p class="error">{{form.password2.errors|striptags}}</p>
+              
+              <button class="btn btn-secondary" type="submit">Sign Up</button><br>
+                
+              <p>Already have an account?<a href="{% url 'account:student_login' %}">Login here</a></p>
+            </form>
+            
+            <script>
+              var place_fields = document.getElementsByTagName('input');
+      
+              place_fields[1].placeholder = 'Enter Your Firstname';
+              place_fields[2].placeholder = 'Enter Your Lastname';
+              place_fields[3].placeholder = 'Enter Your UserID';
+              place_fields[4].placeholder = 'Enter Your EmailID';
+              place_fields[5].placeholder = 'Enter Your Conatct no.'
+              place_fields[6].placeholder = 'Enter Your Password';
+              place_fields[7].placeholder = 'Confirm Password';
+              document.getElementById('id_department').selectedIndex = "1";
+              </script>
+          
+    {% endblock content1 %}     

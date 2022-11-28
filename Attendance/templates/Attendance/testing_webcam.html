@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Attendane | Testing</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .previous{
+            margin: 20px;
+            background-color: #777;
+            padding: 10px;
+            padding-left: 20px;
+            width: 400px;
+            border-radius: 20px;
+        }
+        .previous a{
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body style="background-color: #f7f7f7;">
+    <div class="previous">
+        <a href="{% url 'student:student_dashboard' %}"><span class="fa fa-long-arrow-left"></span> Go Back</a>
+    </div>
+    <center><h2>Face Recognition and Detection Page</h2></center>
+    <!-- <img src="{% static 'student/attendance.jpg' %}"> -->
+   
+    <img src="{% url 'Attendanevideo_feed' %}">
+    <img src="{% url 'webcam_feed' %}">
+
+</body>
+</html>

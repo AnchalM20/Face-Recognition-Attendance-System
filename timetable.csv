@@ -1,0 +1,12 @@
+t_id,day,start_time,end_time,department_id,sem,subject_id_id,teacher_id_id
+1001,Monday,11:00,11:50,1,6,IT2-4SEM,3
+1002,Tuesday,11:00,11:50,1,6,IT1-5SEM,5
+1003,wednesday,11:00,12:00,1,6,IT1-5SEM,12
+1004,Thursday,11:00,11:50,1,6,IT3-5SEM,12
+1005,Friday,11:00,11:50,1,6,IT1-5SEM,5
+1006,Monday,12:00,12:50,1,6,IT1-5SEM,3
+1007,Tuesday,12:00,12:50,1,6,IT3-5SEM,5
+1008,Wednesday,12:00,12:50,1,6,IT1-5SEM,3
+1009,Thursday,12:00,12:50,1,6,IT1-5SEM,3
+1011,Monday,02:00,02:50,1,6,IT1-5SEM,12
+1012,Tuesday,02:00,02:50,1,6,IT3-5SEM,3

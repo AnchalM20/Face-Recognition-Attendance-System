@@ -1,0 +1,76 @@
+{% extends 'student/student_portal.html' %}
+{% load static %}
+{% block title %}Report | {{request.user.username}}{% endblock title %}
+
+{% block css %}    
+  <style>
+    
+  </style>
+{% endblock %}
+
+{% block dashboard %}
+    <div style="margin-top:40px" class=" r col-md-10 col-lg-10">
+        {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show">
+            <strong>{{ message }}.</strong>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+       
+        {% endfor %}
+    
+    <h1>Attendance Report of last two week</h1>
+
+    <div class="row dash-menu">		
+	<p class="heading">Lecture attended per subject(%)</p>
+		{% if c %}
+            <img src="data:image/png;base64,{{c|safe}}">
+        {% endif %}
+	</div>
+		
+	<div class="row dash-menu">
+	<div><p class="heading">Lecture attended per day</p></div>
+		{% if b %}
+            <img src="data:image/png;base64,{{b|safe}}">
+        {% endif %}
+	</div>
+	
+	<div class="row dash-menu">
+	<p class="heading">Week-1 Week-2: present and absent</p>
+		<div class="row piechart">
+            <div class="col-lg-6 col-md-6">
+				{% if d %}
+					<img src="data:image/png;base64,{{d|safe}}">
+				{% endif %}
+			</div>
+            <div class="col-lg-6 col-md-6">
+			{% if e %}
+				<img src="data:image/png;base64,{{e|safe}}">
+			{% endif %}
+			</div>
+        </div>
+	</div>
+		<p style="color: red;">Please check your email inbox regarding low attendace...!!</p>
+
+	 <div class="row dash-menu">
+	 <div><p class="heading">All Your attendance data</p><div>
+            <table border="1px solid">
+                    <tr>
+                        <th>Subject</th>
+                        <th>Date</th>
+                        <th>Attend_time</th>
+                        <th>Status</th>
+                    </tr>
+                    {% for a1 in a %}
+                    <tr>
+                        <td>{{a1.subject}}</td>
+                        <td>{{a1.attend_date}}</td>
+                        <td>{{a1.attend_time}}</td>
+                        <td>{{a1.status}}</td>
+                    </tr>
+                    {% endfor %}
+            </table>
+        </div>
+		
+    </div>
+       
+{% endblock %}

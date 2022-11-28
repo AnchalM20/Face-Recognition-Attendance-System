@@ -1,0 +1,46 @@
+{% extends "base_dashboard.html" %}
+{% load static %}
+
+{% block myblock %}
+
+{% block user_type %}
+    <a href="{% url 'Attendance:attendance' %}" class="navbar-brand dash">Admin DashBoard</a>
+{% endblock %}
+
+{% if user.is_teacher or user.is_student %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-4">
+                <div class="jumbotron">
+                    <h1>Sorry Mr./Miss {{user.username}} You are not allowed Here</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+
+<!-- <div class="previous">
+    <a href="{% url 'student:student_dashboard' %}"><span class="fa fa-long-arrow-left"></span> Go Back</a>
+</div> -->
+
+<center><h2>Face Recognition and Detection Page</h2>
+
+<div class="col-lg-4 col-md-4 " style="margin-top: 30px;">
+    <a href="{% url 'Attendance:create_dataset' %}" class="btn btn-secondary" type="submit">Create dataset</a>
+</div>
+
+<div class="col-lg-4 col-md-4 " style="margin-top: 30px;">
+    <a href="{% url 'Attendance:train_model' %}" class="btn btn-secondary" type="submit">Train model</a>
+</div>
+
+<div class="col-lg-4 col-md-4 " style="margin-top: 30px;">
+    <a href="{% url 'Attendance:test_model' %}" class="btn btn-secondary" type="submit">Test model</a>
+</div>
+
+
+</center>
+{% endif %}
+
+{% endblock %}
+
+

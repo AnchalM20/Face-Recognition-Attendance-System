@@ -1,0 +1,55 @@
+{% extends 'teacher/teacher_portal.html' %}
+{% load static %}
+{% block title %}Time Table | {{request.user.username}}{% endblock title %}
+
+{% block css %}    
+  <style>
+    .time{
+      font-size: 30px; 
+      border-bottom: rgb(136, 136, 138) solid 5px;
+      width: 150px;
+    }
+    table{
+      border-radius: 20px;
+    }
+    th,tr,td{
+      padding: 20px;
+      border-bottom: rgb(219, 216, 216) 1px solid;
+      color: #777;
+    }
+    th{
+      color: rgb(87, 87, 87);
+      font-size: 20px;
+    }
+  </style>
+{% endblock %}
+
+{% block dashboard %}
+<h1 class="time">Your Schedule</h1>
+<table class="dash-menu" align=center>
+
+					<tr align=center>
+						<th colspan = 5>{{request.user.student.department}}</th>
+					</tr>
+                    <tr>
+                        <th>Day</th>
+                        <th>Start time</th>
+                        <th>End time</th>
+                        <th>Subject</th>
+						<th>Semester</th>
+
+                    </tr>
+                    {% for m in m1 %}
+                    <tr>
+                        <td>{{m.day}}</td>
+                        <td>{{m.start_time}}</td>
+                        <td>{{m.end_time}}</td>
+                        <td>{{m.subject_id}}</td>
+						<td>{{m.sem}}</td>
+
+						
+                    </tr>
+                    {% endfor %}
+            </table>
+        
+{% endblock %}

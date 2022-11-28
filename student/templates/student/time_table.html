@@ -1,0 +1,68 @@
+{% extends 'student/student_portal.html' %}
+{% load static %}
+{% block title %}Time Table | {{request.user.username}}{% endblock title %}
+
+{% block css %}    
+  <style>
+    .time{
+      font-size: 30px; 
+      border-bottom: rgb(136, 136, 138) solid 5px;
+      width: 150px;
+    }
+    table{
+      border-radius: 20px;
+    }
+    th,tr,td{
+      padding: 20px;
+      border-bottom: rgb(219, 216, 216) 1px solid;
+      color: #777;
+    }
+    th{
+      color: rgb(87, 87, 87);
+      font-size: 20px;
+    }
+  </style>
+{% endblock %}
+
+{% block dashboard %}
+<p class="time">Time Table</p>
+<table class="dash-menu" align=center>
+
+      <tr align=center>
+        <th colspan=6>{{request.user.student.department}}</th>
+      </tr>
+        <tr colspan=6 align=center>
+        <th>Time</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+      </tr>
+      
+      {% regroup m1 by start_time as timelist %}
+    <tbody align="center">  
+      {% for row in timelist %}
+      <tr>
+        {% if row.grouper == '11:00' %}
+        <th rowspan=2>{{row.grouper}}-11:50 </th>
+        {% elif row.grouper == '12:00' %}
+        <th rowspan=2>{{row.grouper}}-12:50 </th>
+        {% elif row.grouper == '02:00' %}
+        <th rowspan=2>{{row.grouper}}-2:50 </th>
+        {% endif %}
+      </tr>  
+
+      <tr colspan=5>       
+        {% for r in row.list %} 
+        <td>{{r.subject_id}}<br>({{r.teacher}})</td>      
+        {% if r.day == '-' %}
+        <td>-</td>
+        {% endif %}
+        {% endfor %}
+      </tr>      
+      {% endfor %}
+    </tbody>    
+  </table> 
+        
+{% endblock %}

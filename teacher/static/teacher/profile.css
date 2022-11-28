@@ -1,0 +1,11 @@
+/* Student_portal */
+
+.previous{
+    width: 200px;
+    background-color: #777;
+}
+.previous a{
+    color: white;
+    text-decoration: none;
+}
+

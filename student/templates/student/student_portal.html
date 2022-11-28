@@ -1,0 +1,116 @@
+{% extends "base_dashboard.html" %}
+{% load static %}
+
+{% block user_type %}
+    <a href="{% url 'student:student_dashboard' %}" class="navbar-brand dash">Student DashBoard</a>
+{% endblock %}
+
+{% block myblock %}
+{% if user.is_superuser or user.is_teacher %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-4">
+                <div class="jumbotron">
+                    <h1>Sorry Mr./Miss {{user.username}} You are not allowed Here</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+
+{% block profile %} 
+<a href="{% url 'student:student_profile' %}" class="btn btn-outline-light">Profile</a>{% endblock %}
+<div class="container-fluid my-0" style="margin-top: 5px;" >
+    <div class="row">
+        <!-- left side menu -->
+        <div class="col-md-2 bg-dark py-5">
+            <nav class="navbar navbar-dark">
+                <a href="{% url 'student:student_dashboard' %}" class="navbar-brand">
+                    <div class="text-center">
+                        {% if request.user.student.image %}
+                        <img class="rounded-circle profile-img" src="{{request.user.student.image.url}}" width="200" height="170">
+                        {% else %}
+                            <img class="rounded-circle profile-img" src="{% static '/student/profile.png' %}" width="170" height="170">
+                        {% endif %}             
+                        <p class="username">{{user.username}}</p>
+                    </div>
+                </a>                
+                <ul class="navbar-nav border-bottom">                   
+                    <li class="nav-item">
+                        <a href="{% url 'account:change_password_stu' %}" class="nav-link">Change Password</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'student:student_profile' %}" class="nav-link">Edit Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'student:attendance_report' %}" class="nav-link">Attendance Report</a>
+                    </li>   
+                </ul>
+
+            </nav>
+        </div>
+		<!--user:shetty11,pass:12345#qwA -->
+        <!-- right side menu -->
+        <div class="container">
+        {% block dashboard %}
+            <div style="margin-top:40px" class="col-md-10 col-lg-10">                
+                <!-- 1st menu -->  
+                {% for message in messages %}
+                    <div class="alert alert-success alert-dismissible fade show">
+                        <strong>{{ message }}.</strong>
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    </div>
+                    {% endfor %} 
+
+                <div class="row dash-menu">
+                    <div class="col-md-4 col-lg-4">                    
+                        <img src="{% static 'student/attendance.jpg' %}">
+                        <p class="dash-stu-heading">Give Attendance</p>
+                    </div>
+                    <div class="col-md-6 col-lg-6 menu-desc">                   
+                        <p class="dash-stu-descr">Give your attendance here by clicking on "give attendance" button. 
+                                                    Then you need to select subject of which you want to give attendance. 
+                                                    </p>
+                        <div class="dash-stu-btn">
+                            <a class="btn btn-secondary" href="{% url 'Attendance:select_sub' %}">Give Attendance</a>
+                        </div>                     
+                    </div>
+                </div>    
+    
+                <!-- 2nd menu -->      
+                <div class="row dash-menu">
+                    <div class="col-md-4 col-lg-4">
+                        <img src="{% static 'student/tt.png' %}">
+                        <p class="dash-stu-heading">Time Table</p>
+                    </div>
+                    <div class="col-md-6 col-lg-6 menu-desc">
+                        <p class="dash-stu-descr"> Click here to see time table of your respective departement and semester. </p>
+                        <div class="dash-stu-btn">
+                            <a class="btn btn-secondary" href="{% url 'student:time_table' %}">Time Table</a>
+                        </div>
+                    </div> 
+                </div>         
+                                
+                <!-- 3rd menu -->
+                <div class="row dash-menu">  
+                    <div class="col-md-4 col-lg-4">
+                        <img src="{% static 'student/report.png' %}">
+                        <p class="dash-stu-heading">Attendance Report</p>
+                    </div>
+                    <div class="col-md-6 col-lg-6 menu-desc">
+                        <p class="dash-stu-descr"> See your all your attendance history of previous week,previous month
+                        Check the backlog and other activity of attendance.</p>
+                        <div class="dash-stu-btn">
+                            <a class="btn btn-secondary" href="{% url 'student:attendance_report' %}">See Report</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

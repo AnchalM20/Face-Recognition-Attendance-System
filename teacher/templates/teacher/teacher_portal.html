@@ -1,0 +1,94 @@
+{% extends "base_dashboard.html" %}
+{% load static %}
+
+{% block user_type %}
+    <a href="{% url 'teacher:teacher_dashboard' %}" class="navbar-brand dash">Teacher DashBoard</a>
+{% endblock %}
+
+{% block myblock %}
+{% if user.is_superuser or user.is_student %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-4">
+                <div class="jumbotron">
+                    <h1>Sorry Mr./Miss {{user.username}} You are not allowed Here</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+
+{% block profile %} <a href="{% url 'teacher:teacher_profile' %}" class="btn btn-outline-light">Profile</a>{% endblock %}
+<div class="container-fluid my-0" style="margin-top: 5px;" >
+					{% for message in messages %}
+                    <div class="alert alert-success alert-dismissible fade show">
+                        <strong>{{ message }}.</strong>
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    </div>
+                    {% endfor %} 
+    <div class="row">
+        <!-- left side menu -->
+        <div class="col-md-2 bg-dark py-5">
+            <nav class="navbar navbar-dark">
+                <a href="{% url 'teacher:teacher_dashboard' %}" class="navbar-brand">
+                    <div class="text-center">
+                        {% if request.user.teacher.image %}
+                        <img class="rounded-circle profile-img" src="{{request.user.teacher.image.url}}" width="170" height="170">
+                        {% else %}
+                            <img class="rounded-circle profile-img" src="{% static '/teacher/profile.png' %}" width="170" height="170">
+                        {% endif %}             
+                        <p class="username">{{user.username}}</p>
+                    </div>
+                </a>                
+                <ul class="navbar-nav border-bottom">                   
+                    <li class="nav-item">
+                        <a href="{% url 'account:change_password_teach' %}" class="nav-link">Change Password</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'teacher:teacher_profile' %}" class="nav-link">Edit Profile</a>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+
+        <!-- right side menu -->
+        <div class="container">
+        {% block dashboard %}
+            <div style="margin-top:40px" class="col-md-10 col-lg-10">                
+                    
+                <!-- 2nd menu -->            
+                <div class="row dash-menu">  
+                    <div class="col-md-4 col-lg-4">
+                        <img src="{% static 'student/report.png' %}">
+                        <p class="dash-stu-heading">Attendance Sheet</p>
+                    </div>
+                    <div class="col-md-6 col-lg-6 menu-desc">
+                        <p class="dash-stu-descr"> See attendance record of your lecture and download it in excel formate(.xls)</p>
+                        <div class="dash-stu-btn">
+                            <a class="btn btn-secondary" href="{% url 'teacher:excel_report' %}">Download Attendance</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 3rd menu -->
+                <div class="row dash-menu">
+                    <div class="col-md-4 col-lg-4">
+                        <img src="{% static 'student/tt.png' %}">
+                        <p class="dash-stu-heading">Schedule</p>
+                    </div>
+                    <div class="col-md-6 col-lg-6 menu-desc">
+                        <p class="dash-stu-descr"> See your all lecture schedule in by day ,time and semester</p>
+                        <div class="dash-stu-btn">
+                            <a class="btn btn-secondary" href="{% url 'teacher:ttime_table' %}">See Schedule</a>
+                        </div>
+                    </div> 
+                </div>   
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

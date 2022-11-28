@@ -1,0 +1,55 @@
+{% extends 'account.html' %}
+{% load static %}
+{% block title %}Login | Admin{% endblock title %}
+
+{% block style %}
+	<style>
+		.login-box{
+			width: 40%;
+			/* box-shadow: none; */
+			background-color: transparent;
+		}
+	</style>
+{% endblock %}
+
+{% block content1 %}
+         <form class="login-box" action="{% url 'account:admin_login' %}" method="post" novalidate >
+          {% for message in messages %}
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>{{message}}</strong> 
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            {% endfor %}
+
+          <h1>Admin Login</h1>
+           {% csrf_token %}  
+                    
+              <div class="textbox">
+                <span class="fa fa-user"></span>
+                {{form.username}}
+              </div>
+              <p class="error">{{form.username.errors|striptags}}</p>
+                            
+              <div class="textbox">
+                <span class="fa fa-key"></span>
+                {{form.password}} 
+              </div>
+              <p class="error">{{form.password.errors|striptags}}</p>
+              
+              <button class="btn btn-secondary" type="submit">Sign In</button><br>
+              
+          </form>
+        </div>
+      </div>
+  </div>
+</div>
+            <script>
+              var place_fields = document.getElementsByTagName('input');
+              place_fields[1].placeholder = 'Enter Your Username(ID)';
+              place_fields[2].placeholder = 'Enter Password';
+            </script>
+          
+    {% endblock content1 %}        
+        

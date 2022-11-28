@@ -1,0 +1,63 @@
+{% extends 'student/student_portal.html' %}
+{% load static %}
+{% block title %}Profile | {{request.user.username}}{% endblock title %}
+
+{% block dashboard %}
+
+<div style="margin-top:40px" class=" r col-md-10 col-lg-10">
+  {% for message in messages %}
+  <div class="alert alert-success alert-dismissible fade show">
+    <strong>{{ message }}.</strong>
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+{% endfor %}
+  <div class="row dash-menu">
+    <form action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %}        
+          <p style="font-size: 30px;">Profile Setting</p>
+          <div class="row">
+            <div class="col-lg-5 col-md-5">{{fm.username.label_tag}}</div>
+            <div class="col-lg-5 col-md-5">{{fm.username}}</div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-5 col-md-5">{{fm.email.label_tag}}</div>
+            <div class="col-lg-5 col-md-5 dbox">{{fm.email}}</div>
+          </div>
+          <div class="row">
+            <div class="col-lg-5 col-md-5">{{fm1.first_name.label_tag}} </div>
+            <div class="col-lg-5 col-md-5 dbox">{{fm1.first_name}}</div>
+          </div>
+          <div class="row">
+            <div class="col-lg-5 col-md-5">{{fm1.last_name.label_tag}}</div>
+            <div class="col-lg-5 col-md-5 dbox">{{fm1.last_name}}</div>
+          </div>
+          <div class="row">
+            <div class="col-lg-5 col-md-5">{{fm1.roll_no.label_tag}}</div>
+            <div class="col-lg-5 col-md-5 dbox">{{fm1.roll_no}}</div>
+          </div>
+          <div class="row">
+            <div class="col-lg-5 col-md-5"> {{fm1.semester.label_tag}} </div>
+            <div class="col-lg-5 col-md-5 dbox">{{fm1.semester}}</div>
+          </div>
+          <div class="row">
+            <div class="col-lg-5 col-md-5">{{fm1.contact_no.label_tag}} </div>
+            <div class="col-lg-5 col-md-5 dbox">{{fm1.contact_no}}</div>
+          </div>
+          <div class="row">
+            <div class="col-lg-5 col-md-5"> {{fm1.department.label_tag}}  </div>
+            <div class="col-lg-5 col-md-5 dbox">{{fm1.department}}</div>
+          </div>
+          <div class="row">
+            <div class="col-lg-5 col-md-5"> {{fm1.image.label_tag}} </div>
+            <div class="col-lg-5 col-md-5 dbox">{{fm1.image}}</div>
+          </div>
+                        
+          <div class="col-lg-8 col-md-8 " style="margin-top: 30px;">
+            <button class="btn btn-secondary" type="submit">Save changes</button>
+          </div>           
+    </form>
+  </div>
+
+</div>
+{% endblock %}

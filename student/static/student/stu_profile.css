@@ -1,0 +1,93 @@
+/* Student_portal */
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color: #f7f7f7;
+    
+}
+.dash{
+    margin-left: 50px;
+    font-size: 20px;
+    border-bottom: 5px solid white;
+    border-radius: 20px;
+    padding: 0px 15px;
+    padding-bottom: 5px;
+
+}
+.dash-menu{
+    margin-bottom: 30px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 8px 2px rgb(187, 186, 186);
+}
+.dash-menu img{
+    height: 80%;
+    width: 60%;
+    padding: 10px;
+    margin-left: 10%;
+}
+.dash-stu-heading{
+    border-bottom: 2px solid #777; 
+    color: #777;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+}
+.menu-desc{
+    padding-top: 50px;
+}
+.profile-img{
+    box-shadow: 0 0 1px 2px white;
+    border: 1px solid white;
+}
+.profile-img:hover{
+    background-color: white;
+    box-shadow: 0 0 8px 2px rgb(250, 250, 250);
+    border: 1px solid #777;
+}
+.username{
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    padding: 5px;
+    border-bottom: 1px solid white;
+}
+.username:hover{
+    color: white;
+    border-bottom: 1px solid black;
+}
+.navbar-nav .ml-auto{
+    margin-left: 20px;
+}
+.dash-stu-btn .btn:hover{
+    background-color: white;
+    color: #777;
+}
+.dash-stu-descr{
+    text-align:justify
+}
+.border-bottom .nav-item{
+    border-bottom: 1px solid black;
+}
+
+.dash-menu .row{
+    margin: 20px;
+    padding-bottom: 10px;
+    box-shadow: 0 8px 6px -8px rgb(172, 170, 170);
+
+}
+.text-center{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.piechart img{
+	width:100%;
+	height:	100%;
+}
+
+.heading{
+	color: #777;
+	size: 20px;
+	font-weight: bold;
+}
